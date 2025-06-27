@@ -1,9 +1,9 @@
 import { writable } from "svelte/store";
 
-import { type NetworkData, Paseo } from "./networkData";
+import { EveryTestnet, type NetworkData } from "./networkData";
 
-// Defaults to Paseo, being updated in Faucet.svelte
-export const testnet = writable<NetworkData>(Paseo);
+// Defaults to EveryTestnet, being updated in Faucet.svelte
+export const testnet = writable<NetworkData>(EveryTestnet);
 
 interface FaucetOperation {
   success: boolean;

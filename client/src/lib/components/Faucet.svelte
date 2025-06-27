@@ -6,7 +6,7 @@
   import Success from "$lib/components/screens/Success.svelte";
   import SocialTags from "$lib/components/SocialTags.svelte";
   import type { NetworkData } from "$lib/utils/networkData";
-  import { operation, testnet } from "$lib/utils/stores";
+  import { operation } from "$lib/utils/stores";
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
 
@@ -14,15 +14,14 @@
 
   export let faq: string;
   export let network: NetworkData;
-  export let title: string = `Get ${network.currency} tokens for Polkadot's ${network.networkName} testnet and its parachains.`;
+  export let title: string = `Get ${network.currency} tokens for ${network.networkName}.`;
 
   let parachain: number;
   onMount(() => {
     const urlParams = new URLSearchParams(window.location.search);
-
     const parachainQuery = urlParams.get("parachain") ?? "-1";
     parachain = parseInt(parachainQuery);
-    testnet.set(network);
+    // testnet.set(network);
   });
 </script>
 
@@ -30,7 +29,7 @@
   <SocialTags />
   <MarkUp {faq} />
   <div class="flex items-center justify-center mt-16 mb-4 md:my-16">
-    <Card {title}>
+    <Card {title} {network}>
       {#if !$operation}
         <Form network={parachain ?? -1} networkData={network} />
       {:else}

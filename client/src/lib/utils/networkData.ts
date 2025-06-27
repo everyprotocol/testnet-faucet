@@ -23,34 +23,30 @@ export interface NetworkData {
   teleportEnabled: boolean;
 }
 
-export const Westend: NetworkData = {
-  networkName: "Westend",
-  currency: "WND",
-  chains: [{ name: "Westend", id: -1 }],
-  endpoint: faucetUrl("https://westend-faucet.polkadot.io/drip/web"),
-  explorer: "https://assethub-westend.subscan.io",
-  teleportEnabled: false,
+export const EveryTestnet: NetworkData = {
+  networkName: "Every Testnet",
+  currency: "EVERY",
+  chains: [
+    { name: "Sepolia", id: 0 },
+    { name: "Base Sepolia", id: 1 },
+  ],
+  endpoint: faucetUrl("http://localhost:5555/drip/web"),
+  explorer: null,
+  teleportEnabled: true,
 };
 
-export const Paseo: NetworkData = {
-  networkName: "Paseo",
-  currency: "PAS",
-  chains: [
-    { name: "Paseo Relay", id: -1 },
-    { name: "AssetHub", id: 1000 },
-    { name: "Passet Hub: smart contracts", id: 1111 },
-    { name: "BridgeHub", id: 1002 },
-    { name: "People", id: 1004 },
-    { name: "Coretime", id: 1005 },
-  ],
-  endpoint: faucetUrl("https://paseo-faucet.parity-testnet.parity.io/drip/web"),
+export const EveryDevelopment: NetworkData = {
+  networkName: "Every Development",
+  currency: "EVERY",
+  chains: [{ name: "Anvil", id: 0 }],
+  endpoint: faucetUrl("http://localhost:5555/drip/web"),
   explorer: null,
   teleportEnabled: true,
 };
 
 export const Networks: { network: NetworkData; url: string }[] = [
-  { network: Paseo, url: (base as string) || "/" },
-  { network: Westend, url: `${base as string}/westend` },
+  { network: EveryTestnet, url: (base as string) || "/" },
+  { network: EveryDevelopment, url: (base as string) || "/development" },
 ];
 
 export function getChainName(network: NetworkData, id: number): string | null {

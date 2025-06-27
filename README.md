@@ -8,8 +8,8 @@
 
 ```bash
 yarn install
-yarn generate:papi
-yarn simple-git-hooks
+yarn codegen
+yarn build
 ```
 
 #### start local database:
@@ -19,7 +19,6 @@ yarn dev:db
 
 #### run migrations:
 ```bash
-yarn build
 yarn migrations:run
 ```
 

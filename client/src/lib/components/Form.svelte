@@ -1,7 +1,7 @@
 <script lang="ts">
   import { PUBLIC_CAPTCHA_KEY } from "$env/static/public";
   import type { NetworkData } from "$lib/utils/networkData";
-  import { operation, testnet } from "$lib/utils/stores";
+  import { operation } from "$lib/utils/stores";
 
   import { request as faucetRequest } from "../utils";
   import CaptchaV2 from "./CaptchaV2.svelte";
@@ -33,7 +33,7 @@
   }
 
   async function request(address: string): Promise<string> {
-    return faucetRequest(address, token, $testnet, network);
+    return faucetRequest(address, token, networkData, network);
   }
 </script>
 
@@ -41,13 +41,13 @@
   <div class="grid md:grid-cols-2 md:gap-x-4">
     <NetworkDropdown currentNetwork={networkData} />
     {#if networkData.teleportEnabled}
-      <NetworkInput bind:network />
+      <NetworkInput bind:network {networkData} />
     {/if}
   </div>
 
   <div class="inputs-container">
     <label class="label" for="address">
-      <span class="form-label">{$testnet.networkName} Address</span>
+      <span class="form-label">{networkData.networkName} Address</span>
     </label>
     <input
       type="text"
@@ -64,7 +64,7 @@
       <CaptchaV2 captchaKey={PUBLIC_CAPTCHA_KEY ?? ""} on:token={onToken} theme="dark" />
     </div>
     <button class="submit-btn" type="submit" data-testid="submit-button" disabled={!formValid}>
-      Get some {$testnet.currency}s
+      Get some {networkData.currency}s
     </button>
   {:else}
     <button class="btn btn-primary loading" disabled> Loading</button>

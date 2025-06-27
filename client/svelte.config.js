@@ -7,7 +7,7 @@ import preprocess from "svelte-preprocess";
 const config = {
   preprocess: [preprocess({ postcss: true })],
   onwarn: (warning, handler) => {
-    if (warning.code === 'css-unused-selector') {
+    if (warning.code === "css-unused-selector") {
       return;
     }
     handler(warning);
