@@ -6,19 +6,18 @@ import express from "express";
 
 import router from "./router.js";
 
-const PORT = config.Get("PORT");
-const name = process.env.npm_package_name!;
-const version = process.env.npm_package_version!;
-const app = express();
+export function createApp() {
+  const PORT = config.Get("PORT");
+  const app = express();
 
-app.use(bodyParser.json());
-app.use("/", router);
-
-export const startServer = () => {
+  app.use(bodyParser.json());
+  app.use("/", router);
   app.listen(PORT, () => {
+    const name = process.env.npm_package_name!;
+    const version = process.env.npm_package_version!;
     logger.info(`Starting ${name} v${version}`);
     logger.info(`Faucet backend listening on port ${PORT}.`);
   });
-};
 
-export default app;
+  return app;
+}
