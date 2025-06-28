@@ -9,15 +9,16 @@ import router from "./router.js";
 const PORT = config.Get("PORT");
 const name = process.env.npm_package_name!;
 const version = process.env.npm_package_version!;
+const app = express();
+
+app.use(bodyParser.json());
+app.use("/", router);
 
 export const startServer = () => {
-  const app = express();
-
-  app.use(bodyParser.json());
-  app.use("/", router);
-
   app.listen(PORT, () => {
     logger.info(`Starting ${name} v${version}`);
     logger.info(`Faucet backend listening on port ${PORT}.`);
   });
 };
+
+export default app;
