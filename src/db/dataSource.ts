@@ -1,6 +1,6 @@
-import { config } from "#src/config";
 import { DataSource } from "typeorm";
 
+import { config } from "../config.js";
 import { Drip } from "./entity/Drip.js";
 import { migrations } from "./migration/migrations.js";
 
