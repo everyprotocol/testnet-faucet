@@ -1,8 +1,10 @@
 {
-  "name": "substrate-faucet",
+  "name": "every-faucet-frontend",
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "docker:build": "docker build -t every-faucet-frontend .",
+    "start": "vite",
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",

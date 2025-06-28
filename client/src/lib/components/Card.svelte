@@ -1,6 +1,6 @@
 <script lang="ts">
   import { PUBLIC_DEMO_MODE } from "$env/static/public";
-  import { type NetworkData } from "$lib/utils/networkData";
+  import type { NetworkData } from "$lib/utils/networkData";
 
   export let title: string;
   export let network: NetworkData;
