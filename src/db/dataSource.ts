@@ -16,4 +16,5 @@ export const AppDataSource = new DataSource({
   entities: [Drip],
   subscribers: [],
   migrations,
+  ssl: config.Get("DB_USE_SSL") ? { rejectUnauthorized: false } : false,
 });
